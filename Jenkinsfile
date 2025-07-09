@@ -37,11 +37,13 @@ pipeline {
         stage("Build Docker Image") {
             steps {
                 script {
+
                     docker.withRegistry("${registry}", registryCredentials) {
                         sh "docker build -t backend-nest-test-cld ."
                         sh "docker tag backend-nest-test-cld ${dockerImagePrefix}/backend-nest-test-cld"
                         sh "docker push ${dockerImagePrefix}/backend-nest-test-cld"
                     }
+                   
                 }
             }
         }

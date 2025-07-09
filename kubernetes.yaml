@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lab-cld
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-nest-test-cld
+  namespace: lab-cld
+  labels:
+    app: backend-nest-test-cld
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: backend-nest-test-cld
+  template:
+    metadata:
+      labels:
+        app: backend-nest-test-cld
+    spec:
+      containers:
+      - name: backend-nest-test-cld
+        image: us-west1-docker.pkg.dev/lab-agibiz/docker-repository/backend-nest-test-cld
+        imagePullPolicy: Always
